@@ -22,7 +22,9 @@ const Appbar = () => {
         {isLoggedIn ? <UserMenu /> : <AuthNav />}
       </Header>
       <main>
+        {/* <Suspense fallback={null}> */}
         <Outlet />
+        {/* </Suspense> */}
       </main>
       <Footer />
     </>
