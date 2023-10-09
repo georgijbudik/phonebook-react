@@ -1,9 +1,19 @@
 import { nanoid } from 'nanoid';
-import { Form, Container, Label, Input, Button } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'components/redux/operations';
+import { addContact } from 'components/redux/contacts/contactOperations';
 import { selectContacts } from 'components/redux/selectors';
 import { useState } from 'react';
+import {
+  Box,
+  FormLabel,
+  Stack,
+  Heading,
+  Text,
+  useColorModeValue,
+  ScaleFade,
+  Input,
+  Button,
+} from '@chakra-ui/react';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
@@ -15,8 +25,7 @@ const ContactForm = () => {
   const nameInputId = nanoid();
   const telInputId = nanoid();
 
-  const handleChange = e => {
-    const { name, value } = e.target;
+  const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'name':
         setName(value);
@@ -44,34 +53,57 @@ const ContactForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Container>
-        <Label htmlFor={nameInputId}>Name</Label>
-        <Input
-          type="text"
-          name="name"
-          value={name}
-          pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-          onChange={handleChange}
-          id={nameInputId}
-        />
-        <Label htmlFor={telInputId}>Number</Label>
-        <Input
-          type="tel"
-          name="number"
-          value={number}
-          pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-          onChange={handleChange}
-          id={telInputId}
-        />
-      </Container>
+    <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+      <Stack align={'center'}>
+        <Heading fontSize={'4xl'} textAlign={'center'}>
+          This is your PhoneBook
+        </Heading>
+        <Text fontSize={'lg'} color={'gray.600'}>
+          here you can add contacts
+        </Text>
+      </Stack>
+      <ScaleFade initialScale={0.7} in>
+        <Box
+          rounded={'lg'}
+          bg={useColorModeValue('white', 'gray.700')}
+          boxShadow={'lg'}
+          p={8}
+        >
+          <Stack spacing={20} w={'350px'}>
+            <form onSubmit={handleSubmit}>
+              <Stack spacing={3}>
+                <FormLabel htmlFor={nameInputId}>Name</FormLabel>
+                <Input
+                  type="text"
+                  name="name"
+                  value={name}
+                  pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                  title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                  required
+                  onChange={handleChange}
+                  id={nameInputId}
+                />
+                <FormLabel htmlFor={telInputId}>Number</FormLabel>
+                <Input
+                  type="tel"
+                  name="number"
+                  value={number}
+                  pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
+                  title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                  required
+                  onChange={handleChange}
+                  id={telInputId}
+                />
 
-      <Button type="submit">Add contact</Button>
-    </Form>
+                <Button type="submit" colorScheme="orange">
+                  Add contact
+                </Button>
+              </Stack>
+            </form>
+          </Stack>
+        </Box>
+      </ScaleFade>
+    </Stack>
   );
 };
 

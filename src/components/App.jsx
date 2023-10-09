@@ -1,27 +1,58 @@
-import ContactForm from './ContactForm/';
-import ContactList from './ContactList/';
-import Filter from './Filter/';
-import { fetchContacts } from './redux/operations';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { selectIsLoading, selectError } from './redux/selectors';
+import { Routes, Route } from 'react-router-dom';
+import Contacts from 'pages/Contacts';
+import Home from 'pages/Home';
+import LogIn from 'pages/LogIn';
+import Register from 'pages/Register';
+import Appbar from './Appbar/Appbar';
+import { fetchCurrentUser } from './redux/auth/authOperations';
+import { selectIsFetching } from './redux/auth/authSelectors';
+import PrivateRoute from 'PrivateRoute';
+import PublicRoute from 'PublicRoute';
+import NotFound from 'pages/NotFound';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
+  const isFetching = useSelector(selectIsFetching);
+
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(fetchCurrentUser());
   }, [dispatch]);
   return (
-    <div>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2>Contacts</h2>
-      <Filter />
-      {isLoading && !error && <b>Request in progress...</b>}
-      {error && <b>Error!</b>}
-      <ContactList />
-    </div>
+    !isFetching && (
+      <Routes>
+        <Route path="/" element={<Appbar />}>
+          <Route index element={<Home />} />
+          <Route
+            path="contacts"
+            element={
+              <PrivateRoute redirectTo="/login" component={<Contacts />} />
+            }
+          />
+          <Route
+            path="register"
+            element={
+              <PublicRoute
+                redirectTo="/contacts"
+                component={<Register />}
+                restricted
+              />
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <PublicRoute
+                redirectTo="/contacts"
+                component={<LogIn />}
+                restricted
+              />
+            }
+          />
+        </Route>
+        <Route path="*" element={<NotFound />}></Route>
+      </Routes>
+    )
   );
 };

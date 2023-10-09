@@ -1,7 +1,7 @@
-import { Label, Input } from './Filter.styled';
-import { changeFilter } from 'components/redux/filterSlice';
+import { changeFilter } from 'components/redux/filter/filterSlice';
 import { selectFilter } from 'components/redux/selectors';
 import { useDispatch, useSelector } from 'react-redux';
+import { Flex, FormLabel, Input } from '@chakra-ui/react';
 
 const Filter = () => {
   const filter = useSelector(selectFilter);
@@ -11,10 +11,17 @@ const Filter = () => {
   const handleFilterChange = e => dispatch(changeFilter(e.currentTarget.value));
 
   return (
-    <Label>
-      Find contact by name
-      <Input type="text" value={filter} onChange={handleFilterChange} />
-    </Label>
+    <Flex justifyContent={'center'}>
+      <FormLabel>
+        Find contact by name
+        <Input
+          type="text"
+          value={filter}
+          onChange={handleFilterChange}
+          borderColor={'blue.200'}
+        />
+      </FormLabel>
+    </Flex>
   );
 };
 
