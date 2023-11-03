@@ -5,11 +5,8 @@ import {
   Stack,
   Heading,
 } from '@chakra-ui/react';
-import { selectIsFetching } from 'components/redux/auth/authSelectors';
-import { useSelector } from 'react-redux';
 
 const Footer = () => {
-  const isFetching = useSelector(selectIsFetching);
   return (
     <Box pt={5}>
       <footer>
