@@ -11,6 +11,7 @@ import Home from 'pages/Home';
 import Contacts from 'pages/Contacts';
 import Register from 'pages/Register';
 import LogIn from 'pages/LogIn';
+import { Toaster } from 'react-hot-toast';
 
 // const HomePage = lazy(() => import('../pages/Home'));
 // const RegisterPage = lazy(() => import('../pages/Register'));
@@ -24,43 +25,47 @@ export const App = () => {
   useEffect(() => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
+
   return (
     !isFetching && (
       // <Flex justifyContent={'center'} alignContent={'center'}>
       //   Refreshing user...
-      // </Flex>
-      <Routes>
-        <Route path="/" element={<Appbar />}>
-          <Route index element={<Home />} />
-          <Route
-            path="contacts"
-            element={
-              <PrivateRoute redirectTo="/login" component={<Contacts />} />
-            }
-          />
-          <Route
-            path="register"
-            element={
-              <PublicRoute
-                redirectTo="/contacts"
-                component={<Register />}
-                restricted
-              />
-            }
-          />
-          <Route
-            path="login"
-            element={
-              <PublicRoute
-                redirectTo="/contacts"
-                component={<LogIn />}
-                restricted
-              />
-            }
-          />
-        </Route>
-        <Route path="*" element={<NotFound />}></Route>
-      </Routes>
+      // </Flex
+      <>
+        <Toaster />
+        <Routes>
+          <Route path="/" element={<Appbar />}>
+            <Route index element={<Home />} />
+            <Route
+              path="contacts"
+              element={
+                <PrivateRoute redirectTo="/login" component={<Contacts />} />
+              }
+            />
+            <Route
+              path="register"
+              element={
+                <PublicRoute
+                  redirectTo="/contacts"
+                  component={<Register />}
+                  restricted
+                />
+              }
+            />
+            <Route
+              path="login"
+              element={
+                <PublicRoute
+                  redirectTo="/contacts"
+                  component={<LogIn />}
+                  restricted
+                />
+              }
+            />
+          </Route>
+          <Route path="*" element={<NotFound />}></Route>
+        </Routes>
+      </>
     )
   );
 };

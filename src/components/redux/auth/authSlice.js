@@ -9,39 +9,32 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isFetching: false,
-  error: null,
+  isRememberedMe: false,
+};
+
+const handleFulfilled = (state, action) => {
+  state.user = action.payload.user;
+  state.token = action.payload.token;
+  state.isLoggedIn = true;
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    changeRememberMe: (state, action) => {
+      state.isRememberedMe = action.payload;
+    },
+  },
   extraReducers: builder => {
-    builder.addCase(signUp.fulfilled, (state, action) => {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.isLoggedIn = true;
-    });
-    builder.addCase(signUp.rejected, (state, action) => {
-      state.error = action.payload;
-    });
+    builder.addCase(signUp.fulfilled, handleFulfilled);
 
-    builder.addCase(logIn.fulfilled, (state, action) => {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.isLoggedIn = true;
-    });
-    builder.addCase(logIn.rejected, (state, action) => {
-      state.error = action.payload;
-      console.log(state.error);
-    });
+    builder.addCase(logIn.fulfilled, handleFulfilled);
 
     builder.addCase(logOut.fulfilled, (state, action) => {
       state.user = { name: '', email: '' };
       state.token = null;
       state.isLoggedIn = false;
-    });
-    builder.addCase(logOut.rejected, (state, action) => {
-      state.error = action.payload;
     });
     builder.addCase(fetchCurrentUser.pending, (state, action) => {
       state.isFetching = true;
@@ -56,5 +49,6 @@ const authSlice = createSlice({
     });
   },
 });
+export const { changeRememberMe } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;

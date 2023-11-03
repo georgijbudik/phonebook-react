@@ -6,7 +6,7 @@ import { Box } from '@chakra-ui/react';
 const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedin);
   return (
-    <Box ml={6}>
+    <Box ml={6} display={{ base: 'none', md: 'flex' }}>
       <nav>
         <Link to="/">Home</Link>
         {isLoggedIn && <Link to="contacts">Contacts</Link>}

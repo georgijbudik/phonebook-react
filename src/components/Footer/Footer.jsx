@@ -5,10 +5,13 @@ import {
   Stack,
   Heading,
 } from '@chakra-ui/react';
+import { selectIsFetching } from 'components/redux/auth/authSelectors';
+import { useSelector } from 'react-redux';
 
 const Footer = () => {
+  const isFetching = useSelector(selectIsFetching);
   return (
-    <Box pt={20}>
+    <Box pt={5}>
       <footer>
         <Box
           bg={useColorModeValue('orange.500', 'orange')}
@@ -26,7 +29,7 @@ const Footer = () => {
             justify={'center'}
             align={{ base: 'center', md: 'center' }}
           >
-            <Heading as={'b'} fontSize={'lg'}>
+            <Heading as={'b'} fontSize={{ base: 'sm', sm: 'lg', md: 'lg' }}>
               © 2023 Georgii Budik. All rights reserved
             </Heading>
           </Container>

@@ -15,6 +15,7 @@ export const signUp = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/users/signup', credentials);
+      window.localStorage.setItem('token', JSON.stringify(data.token));
       token.set(data.token);
       return data;
     } catch (error) {
@@ -24,9 +25,15 @@ export const signUp = createAsyncThunk(
 );
 export const logIn = createAsyncThunk(
   'auth/logIn',
-  async (credentials, { rejectWithValue }) => {
+  async (credentials, { getState, rejectWithValue }) => {
+    const state = getState();
+    const isRememberedMe = state.auth.isRememberedMe;
+
     try {
       const { data } = await axios.post('/users/login', credentials);
+      if (isRememberedMe) {
+        window.localStorage.setItem('token', JSON.stringify(data.token));
+      }
       token.set(data.token);
       return data;
     } catch (error) {
@@ -38,6 +45,7 @@ export const logOut = createAsyncThunk(
   'auth/logOut',
   async (_, { rejectWithValue }) => {
     try {
+      window.localStorage.removeItem('token');
       const { data } = await axios.post('/users/logout');
       token.unset();
       return data;
@@ -49,15 +57,15 @@ export const logOut = createAsyncThunk(
 
 export const fetchCurrentUser = createAsyncThunk(
   'auth/refresh',
-  async (_, { getState, rejectWithValue }) => {
-    const state = getState();
-    const persistedToken = state.auth.token;
-
+  async (_, { rejectWithValue }) => {
+    // const state = getState();
+    // const persistedToken = state.auth.token;
+    const persistedToken = window.localStorage.getItem('token');
+    const result = persistedToken.slice(1, -1);
     if (persistedToken === null) {
       return rejectWithValue();
     }
-    token.set(persistedToken);
-
+    token.set(result);
     try {
       const { data } = await axios.get('/users/current');
       return data;

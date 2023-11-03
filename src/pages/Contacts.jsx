@@ -1,4 +1,4 @@
-import { Container } from '@chakra-ui/react';
+import { Box, Container } from '@chakra-ui/react';
 import ContactForm from 'components/ContactForm';
 import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
@@ -16,10 +16,12 @@ const Contacts = () => {
   }, [dispatch]);
   return (
     <Container>
-      <ContactForm />
-      <Filter />
-      {error && <b>Error!</b>}
-      <ContactList />
+      <Box minH={'82.8vh'}>
+        <ContactForm />
+        <Filter />
+        {error && <b>Error!</b>}
+        <ContactList />
+      </Box>
     </Container>
   );
 };
