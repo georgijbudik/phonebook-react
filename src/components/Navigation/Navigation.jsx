@@ -1,4 +1,4 @@
-import { selectIsLoggedin } from 'components/redux/auth/authSelectors';
+import { selectIsLoggedin } from 'redux/auth/authSelectors';
 import { useSelector } from 'react-redux';
 import { Link } from './Navigation.styled';
 import { Box } from '@chakra-ui/react';

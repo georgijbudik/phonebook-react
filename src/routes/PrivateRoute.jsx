@@ -1,4 +1,4 @@
-import { selectIsLoggedin } from 'components/redux/auth/authSelectors';
+import { selectIsLoggedin } from 'redux/auth/authSelectors';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 

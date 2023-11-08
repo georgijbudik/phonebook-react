@@ -1,6 +1,6 @@
 import Navigation from 'components/Navigation/Navigation';
 import UserMenu from 'components/UserMenu/UserMenu';
-import { selectIsLoggedin } from 'components/redux/auth/authSelectors';
+import { selectIsLoggedin } from 'redux/auth/authSelectors';
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { Box, Heading } from '@chakra-ui/react';

@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'components/redux/contacts/contactOperations';
-import { selectContacts, selectIsLoading } from 'components/redux/selectors';
+import { addContact } from 'redux/contacts/contactOperations';
+import { selectContacts, selectIsLoading } from 'redux/selectors';
 import {
   Box,
   FormLabel,

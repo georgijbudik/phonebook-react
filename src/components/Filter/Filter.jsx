@@ -1,5 +1,5 @@
-import { changeFilter } from 'components/redux/filter/filterSlice';
-import { selectFilter } from 'components/redux/selectors';
+import { changeFilter } from 'redux/filter/filterSlice';
+import { selectFilter } from 'redux/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { Flex, FormLabel, Input } from '@chakra-ui/react';
 

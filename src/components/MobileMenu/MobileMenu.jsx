@@ -1,4 +1,4 @@
-import { logOut } from 'components/redux/auth/authOperations';
+import { logOut } from 'redux/auth/authOperations';
 import {
   Menu,
   Icon,
@@ -12,7 +12,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { BiLogOut, BiHomeCircle, BiSolidContact } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLoggedin } from 'components/redux/auth/authSelectors';
+import { selectIsLoggedin } from 'redux/auth/authSelectors';
 import { BiUser } from 'react-icons/bi';
 import { BsPencil } from 'react-icons/bs';
 

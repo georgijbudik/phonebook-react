@@ -1,4 +1,4 @@
-import { logIn } from 'components/redux/auth/authOperations';
+import { logIn } from 'redux/auth/authOperations';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -19,8 +19,8 @@ import {
 import { Formik, Field } from 'formik';
 import toast from 'react-hot-toast';
 import { styles } from 'helpers/notificationStyles';
-import { selectIsRememberedMe } from 'components/redux/auth/authSelectors';
-import { changeRememberMe } from 'components/redux/auth/authSlice';
+import { selectIsRememberedMe } from 'redux/auth/authSelectors';
+import { changeRememberMe } from 'redux/auth/authSlice';
 
 const LogIn = () => {
   const isRememberedMe = useSelector(selectIsRememberedMe);

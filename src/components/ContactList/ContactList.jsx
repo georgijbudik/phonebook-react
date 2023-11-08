@@ -1,6 +1,6 @@
 import { Container, OrderedList } from '@chakra-ui/react';
 import ContactListItem from 'components/ContactList/ContactListItem';
-import { selectFilteredContacts } from 'components/redux/selectors';
+import { selectFilteredContacts } from 'redux/selectors';
 import { useSelector } from 'react-redux';
 
 const ContactList = () => {

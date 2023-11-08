@@ -11,7 +11,7 @@ import {
   Button,
   Modal,
 } from '@chakra-ui/react';
-import { updateContact } from 'components/redux/contacts/contactOperations';
+import { updateContact } from 'redux/contacts/contactOperations';
 import { styles } from 'helpers/notificationStyles';
 import { useState } from 'react';
 import toast from 'react-hot-toast';

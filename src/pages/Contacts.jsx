@@ -2,8 +2,8 @@ import { Box, Container } from '@chakra-ui/react';
 import ContactForm from 'components/ContactForm';
 import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
-import { fetchContacts } from 'components/redux/contacts/contactOperations';
-import { selectError } from 'components/redux/selectors';
+import { fetchContacts } from 'redux/contacts/contactOperations';
+import { selectError } from 'redux/selectors';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 

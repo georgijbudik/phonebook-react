@@ -1,4 +1,4 @@
-import { signUp } from 'components/redux/auth/authOperations';
+import { signUp } from 'redux/auth/authOperations';
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';

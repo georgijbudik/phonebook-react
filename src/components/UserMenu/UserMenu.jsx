@@ -1,5 +1,5 @@
-import { logOut } from 'components/redux/auth/authOperations';
-import { selectUserName } from 'components/redux/auth/authSelectors';
+import { logOut } from 'redux/auth/authOperations';
+import { selectUserName } from 'redux/auth/authSelectors';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Flex, Text } from '@chakra-ui/react';
