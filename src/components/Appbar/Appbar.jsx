@@ -2,7 +2,7 @@ import Navigation from 'components/Navigation/Navigation';
 import UserMenu from 'components/UserMenu/UserMenu';
 import { selectIsLoggedin } from 'redux/auth/authSelectors';
 import { useSelector } from 'react-redux';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { Box, Heading } from '@chakra-ui/react';
 import { Header, Container } from './Appbar.styled';
 import { FcContacts } from 'react-icons/fc';
@@ -18,8 +18,10 @@ const Appbar = () => {
     <>
       <Header>
         <Container>
-          <FcContacts size={'3em'} />
-          <Heading size="md">PhoneBook</Heading>
+          <Link style={{ display: 'flex', alignItems: 'center' }} to={'/'}>
+            <FcContacts size={'3em'} />
+            <Heading size="md">PhoneBook</Heading>
+          </Link>
         </Container>
         <MobileMenu />
         <Navigation />
