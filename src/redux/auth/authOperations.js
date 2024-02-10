@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+axios.defaults.baseURL = 'https://contacts-api-83ja.onrender.com/api';
+
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -14,7 +16,7 @@ export const signUp = createAsyncThunk(
   'auth/signUp',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/users/signup', credentials);
+      const { data } = await axios.post('/users/register', credentials);
       window.localStorage.setItem('token', JSON.stringify(data.token));
       token.set(data.token);
       return data;

@@ -10,12 +10,23 @@ const initialState = {
   isLoggedIn: false,
   isFetching: false,
   isRememberedMe: false,
+  error: null,
 };
 
 const handleFulfilled = (state, action) => {
   state.user = action.payload.user;
   state.token = action.payload.token;
   state.isLoggedIn = true;
+  state.isFetching = false;
+};
+
+const handlePending = (state, action) => {
+  state.isFetching = true;
+};
+
+const handleRejected = (state, action) => {
+  state.isFetching = false;
+  state.error = action.payload;
 };
 
 const authSlice = createSlice({
@@ -27,9 +38,16 @@ const authSlice = createSlice({
     },
   },
   extraReducers: builder => {
+    builder.addCase(signUp.rejected, handleRejected);
+
     builder.addCase(signUp.fulfilled, handleFulfilled);
 
+    builder.addCase(signUp.pending, handlePending);
+
     builder.addCase(logIn.fulfilled, handleFulfilled);
+    builder.addCase(logIn.pending, handlePending);
+
+    builder.addCase(logIn.rejected, handleRejected);
 
     builder.addCase(logOut.fulfilled, (state, action) => {
       state.user = { name: '', email: '' };

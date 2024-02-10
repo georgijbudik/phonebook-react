@@ -45,7 +45,7 @@ const contactsSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       state.items = state.items.filter(
-        contact => contact.id !== action.payload.id
+        contact => contact._id !== action.payload.deletedContact._id
       );
     });
     builder.addCase(deleteContact.rejected, (state, action) =>
@@ -56,7 +56,7 @@ const contactsSlice = createSlice({
       state.error = null;
       state.isLoading = false;
       state.items = state.items.map(contact =>
-        contact.id === action.payload.id ? action.payload : contact
+        contact._id === action.payload._id ? action.payload : contact
       );
     });
   },
