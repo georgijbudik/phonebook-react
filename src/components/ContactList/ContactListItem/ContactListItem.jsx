@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux';
 import { Heading, IconButton, useDisclosure } from '@chakra-ui/react';
-import PropTypes from 'prop-types';
 import { deleteContact } from 'redux/contacts/contactOperations';
 import { DeleteIcon } from '@chakra-ui/icons';
 import { styles } from 'helpers/notificationStyles';
