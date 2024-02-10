@@ -8,14 +8,14 @@ import toast from 'react-hot-toast';
 import { AiOutlineEdit } from 'react-icons/ai';
 import ModalEditContact from 'ModalEditContact/ModalEditContact';
 
-const ContactListItem = ({ id, name, number }) => {
+const ContactListItem = ({ _id, name, phone }) => {
   const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const formattedPhone = number.replace(/ x\d+$/, '');
+  const formattedPhone = phone.replace(/ x\d+$/, '');
 
   const handleDelete = () => {
-    dispatch(deleteContact(id));
+    dispatch(deleteContact(_id));
     toast.success('You have successfully deleted a contact', styles);
   };
 
@@ -43,17 +43,17 @@ const ContactListItem = ({ id, name, number }) => {
         isOpen={isOpen}
         onClose={onClose}
         name={name}
-        number={number}
-        id={id}
+        phone={phone}
+        _id={_id}
       />
     </li>
   );
 };
 
 ContactListItem.propTypes = {
-  id: PropTypes.string.isRequired,
+  _id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
 };
 
 export default ContactListItem;

@@ -18,12 +18,12 @@ const ContactList = () => {
         }}
       >
         <OrderedList spacing={2} p={2}>
-          {filteredContacts.map(({ id, name, number }) => (
+          {filteredContacts.map(({ _id, name, phone }) => (
             <ContactListItem
-              key={id}
-              id={id}
+              key={_id}
+              _id={_id}
               name={name}
-              number={number}
+              phone={phone}
             ></ContactListItem>
           ))}
         </OrderedList>

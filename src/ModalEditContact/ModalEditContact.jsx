@@ -17,17 +17,17 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 
-const ModalEditContact = ({ isOpen, onClose, name, number, id }) => {
+const ModalEditContact = ({ isOpen, onClose, name, phone, _id }) => {
   const [nameValue, setNameValue] = useState(name);
-  const [numberValue, setNumberValue] = useState(number);
+  const [phoneValue, setPhoneValue] = useState(phone);
   const dispatch = useDispatch();
   const handleUpdate = e => {
     e.preventDefault();
     const contact = {
       name: nameValue,
-      number: numberValue,
+      phone: phoneValue,
     };
-    dispatch(updateContact({ contactId: id, contact }));
+    dispatch(updateContact({ contactId: _id, contact }));
     toast.success('You successfully updated contact', styles);
     onClose();
   };
@@ -50,10 +50,10 @@ const ModalEditContact = ({ isOpen, onClose, name, number, id }) => {
               </FormControl>
 
               <FormControl mt={4}>
-                <FormLabel>Number</FormLabel>
+                <FormLabel>Phone</FormLabel>
                 <Input
-                  value={numberValue}
-                  onChange={e => setNumberValue(e.target.value)}
+                  value={phoneValue}
+                  onChange={e => setPhoneValue(e.target.value)}
                 />
               </FormControl>
             </ModalBody>

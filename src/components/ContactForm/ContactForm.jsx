@@ -20,7 +20,7 @@ import { styles } from 'helpers/notificationStyles';
 const ContactForm = () => {
   const initialValues = {
     name: '',
-    number: '',
+    phone: '',
   };
 
   const contacts = useSelector(selectContacts);
@@ -30,14 +30,14 @@ const ContactForm = () => {
   const nameInputId = nanoid();
   const telInputId = nanoid();
 
-  const onSubmit = ({ name, number }, actions) => {
+  const onSubmit = ({ name, phone }, actions) => {
     const existingContact = contacts.find(contact => contact.name === name);
     if (existingContact) {
       toast(`${name} is already in contacts`, { ...styles, icon: 'ℹ️' });
       return;
     }
 
-    dispatch(addContact({ name, number }));
+    dispatch(addContact({ name, phone }));
     toast.success('You have successfully added a contact', styles);
     actions.resetForm();
   };
@@ -62,7 +62,7 @@ const ContactForm = () => {
           <Stack spacing={20} w={{ base: 'none', md: 350 }}>
             <Formik initialValues={initialValues} onSubmit={onSubmit}>
               {({
-                values: { name, number },
+                values: { name, phone },
                 handleChange,
                 handleSubmit,
                 errors,
@@ -86,8 +86,8 @@ const ContactForm = () => {
                     <Field
                       as={Input}
                       type="tel"
-                      name="number"
-                      value={number}
+                      name="phone"
+                      value={phone}
                       pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
                       title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                       required
