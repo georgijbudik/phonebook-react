@@ -17,17 +17,18 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 
-const ModalEditContact = ({ isOpen, onClose, name, phone, _id }) => {
+const ModalEditContact = ({ isOpen, onClose, name, phone, id }) => {
   const [nameValue, setNameValue] = useState(name);
   const [phoneValue, setPhoneValue] = useState(phone);
   const dispatch = useDispatch();
+
   const handleUpdate = e => {
     e.preventDefault();
     const contact = {
       name: nameValue,
       phone: phoneValue,
     };
-    dispatch(updateContact({ contactId: _id, contact }));
+    dispatch(updateContact({ id, contact }));
     toast.success('You successfully updated contact', styles);
     onClose();
   };

@@ -6,14 +6,17 @@ import { fetchContacts } from 'redux/contacts/contactOperations';
 import { selectError } from 'redux/selectors';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLoggedin } from 'redux/auth/authSelectors';
 
 const Contacts = () => {
   const error = useSelector(selectError);
+  const isLoggedIn = useSelector(selectIsLoggedin);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+    isLoggedIn && dispatch(fetchContacts());
+  }, [dispatch, isLoggedIn]);
+
   return (
     <Container>
       <Box minH={'82.8vh'}>
