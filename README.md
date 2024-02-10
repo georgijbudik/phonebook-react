@@ -1,13 +1,13 @@
 
-# Phone Book - React app 
+# Phone Book - React app 📱
 
 The Phonebook application is a simple web application that allows users to manage their contacts efficiently. Users can log in or register, add, delete, and update contact information, as well as apply filters to search for specific contacts.
 
 ## Features
 
-User Authentication: Secure login and registration system.
-Contact Management: Add, delete, and update contact information.
-Filtering: Easily search and filter contacts based on name or phone number.
+- secure login and registration system.
+- add, delete, and update contact information.
+- easily search and filter contacts based on name
 
 ## Technologies used:
 
