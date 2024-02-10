@@ -13,7 +13,12 @@ The Phonebook application is a simple web application that allows users to manag
 
 - Frontend: React, React-Router ReduxTk, Axios, Styled Components, Chakra UI, Formik
 
-- Backend: Node.js, MongoDB, Mongoose
+- Backend: Node.js, MongoDB, Mongoose, JWT, Multer
+
+## References
+
+Backend:
+[**Phonebook-api**](https://github.com/georgijbudik/nodejs-phonebook-rest-api)
 
 ## Installation & Scripts
 
