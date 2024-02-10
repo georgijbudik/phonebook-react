@@ -1,6 +1,6 @@
 import Navigation from 'components/Navigation/Navigation';
 import UserMenu from 'components/UserMenu/UserMenu';
-import { selectIsLoggedin } from 'redux/auth/authSelectors';
+import { selectIsFetching, selectIsLoggedin } from 'redux/auth/authSelectors';
 import { useSelector } from 'react-redux';
 import { Link, Outlet } from 'react-router-dom';
 import { Box, Heading } from '@chakra-ui/react';
@@ -9,10 +9,12 @@ import { FcContacts } from 'react-icons/fc';
 import Footer from 'components/Footer/Footer';
 import AuthNav from 'components/AuthNav/AuthNav';
 import MobileMenu from 'components/MobileMenu/MobileMenu';
-// import { Suspense } from 'react';
-// import { ColorRing } from 'react-loader-spinner';
+import Loader from 'components/Loader/Loader';
+import { Suspense } from 'react';
+
 const Appbar = () => {
   const isLoggedIn = useSelector(selectIsLoggedin);
+  const isFetching = useSelector(selectIsFetching);
 
   return (
     <>
@@ -27,27 +29,16 @@ const Appbar = () => {
         <Navigation />
         {isLoggedIn ? <UserMenu /> : <AuthNav />}
       </Header>
-      <main>
-        <Box>
-          {/* <Suspense
-          fallback={
-            <ColorRing
-              visible={true}
-              height="80"
-              width="80"
-              ariaLabel="blocks-loading"
-              wrapperStyle={{}}
-              wrapperClass="blocks-wrapper"
-              colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
-            />
-          }
-        > */}
-          <Outlet />
-          {/* </Suspense> */}
-        </Box>
-      </main>
 
-      <Footer />
+      <main>
+        <Suspense fallback={isFetching ? <Loader /> : null}>
+          <Box>
+            <Outlet />
+          </Box>
+          {isFetching && <Loader />}
+          {!isFetching && <Footer />}
+        </Suspense>
+      </main>
     </>
   );
 };
