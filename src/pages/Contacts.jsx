@@ -19,7 +19,7 @@ const Contacts = () => {
 
   return (
     <Container>
-      <Box minH={'82.8vh'}>
+      <Box minH={'80vh'}>
         <ContactForm />
         <Filter />
         {error && <b>Error!</b>}

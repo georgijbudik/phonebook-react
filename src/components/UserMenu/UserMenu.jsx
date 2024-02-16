@@ -20,13 +20,20 @@ const UserMenu = () => {
       display={{ base: 'none', md: 'flex' }}
     >
       <span>
-        <BiSolidUser />
+        <BiSolidUser size="20px" />
       </span>
-      <Text as="b" ml={1}>
+      <Text as="b" ml={1} fontSize={{ lg: '18px' }}>
         Welcome, {name}
       </Text>
 
-      <Button type="button" colorScheme="orange" onClick={handleLogOut} ml={5}>
+      <Button
+        type="button"
+        colorScheme="orange"
+        onClick={handleLogOut}
+        ml={5}
+        padding={{ lg: '24px' }}
+        fontSize={{ lg: '18px' }}
+      >
         Logout
       </Button>
     </Flex>

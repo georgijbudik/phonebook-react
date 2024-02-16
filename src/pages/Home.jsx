@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const Home = () => {
   const text = 'Welcome to the phone contact storage app! 👀';
   return (
-    <Flex pt={250} justify={'center'} textAlign={'center'} minH={'82.8vh'}>
+    <Flex pt={250} justify={'center'} textAlign={'center'} minH={'80vh'}>
       <motion.div>
         {text.split('').map((letter, index) => (
           <motion.span

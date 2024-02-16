@@ -8,7 +8,7 @@ import {
 
 const Footer = () => {
   return (
-    <Box pt={5}>
+    <Box pt={5} maxHeight={'10vh'}>
       <footer>
         <Box
           bg={useColorModeValue('orange.500', 'orange')}
