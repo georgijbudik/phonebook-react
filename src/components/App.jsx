@@ -8,10 +8,12 @@ import PublicRoute from 'routes/PublicRoute';
 import { Toaster } from 'react-hot-toast';
 import NotFound from 'pages/NotFound';
 import Home from 'pages/Home';
+import Register from 'pages/Register';
+import LogIn from 'pages/LogIn';
 
 const ContactsPage = lazy(() => import('../pages/Contacts'));
-const RegisterPage = lazy(() => import('../pages/Register'));
-const LoginPage = lazy(() => import('../pages/LogIn'));
+// const RegisterPage = lazy(() => import('../pages/Register'));
+// const LoginPage = lazy(() => import('../pages/LogIn'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -36,7 +38,7 @@ export const App = () => {
             element={
               <PublicRoute
                 redirectTo="/contacts"
-                component={<RegisterPage />}
+                component={<Register />}
                 restricted
               />
             }
@@ -46,7 +48,7 @@ export const App = () => {
             element={
               <PublicRoute
                 redirectTo="/contacts"
-                component={<LoginPage />}
+                component={<LogIn />}
                 restricted
               />
             }
