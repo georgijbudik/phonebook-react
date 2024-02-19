@@ -99,6 +99,7 @@ const ContactForm = () => {
                       type="submit"
                       colorScheme="orange"
                       isLoading={isLoading}
+                      marginTop={{ base: '10px', md: '15px', lg: '20px' }}
                     >
                       Add contact
                     </Button>
