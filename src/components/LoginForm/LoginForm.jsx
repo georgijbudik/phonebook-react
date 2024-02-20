@@ -20,6 +20,7 @@ import toast from 'react-hot-toast';
 import { styles } from 'helpers/notificationStyles';
 import { changeRememberMe } from 'redux/auth/authSlice';
 import { validatePassword } from 'helpers/validatePassword';
+import { loginSchema } from 'validationSchemas/loginSchema';
 
 const LoginForm = () => {
   const isRememberedMe = useSelector(selectIsRememberedMe);
@@ -58,7 +59,11 @@ const LoginForm = () => {
         boxShadow={'lg'}
         p={{ base: 6, lg: 8 }}
       >
-        <Formik initialValues={initialValues} onSubmit={onSubmit}>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={onSubmit}
+          validationSchema={loginSchema}
+        >
           {({
             values: { email, password },
             handleChange,
@@ -68,7 +73,10 @@ const LoginForm = () => {
           }) => (
             <form onSubmit={handleSubmit}>
               <Stack spacing={4} mb={3}>
-                <FormControl isInvalid={!!errors.email && touched.email}>
+                <FormControl
+                  isInvalid={!!errors.email && touched.email}
+                  isRequired
+                >
                   <FormLabel htmlFor={emailInputId}>Email</FormLabel>
                   <Field
                     as={Input}
@@ -79,9 +87,14 @@ const LoginForm = () => {
                     id={emailInputId}
                     validate={validateEmail}
                   />
-                  <FormErrorMessage>{errors.email}</FormErrorMessage>
+                  <FormErrorMessage fontSize={'12px'}>
+                    {errors.email}
+                  </FormErrorMessage>
                 </FormControl>
-                <FormControl isInvalid={!!errors.password && touched.password}>
+                <FormControl
+                  isInvalid={!!errors.password && touched.password}
+                  isRequired
+                >
                   <FormLabel htmlFor={passwordInputId}>Password</FormLabel>
                   <Field
                     as={Input}
@@ -93,7 +106,9 @@ const LoginForm = () => {
                     id={passwordInputId}
                     validate={validatePassword}
                   />
-                  <FormErrorMessage>{errors.password}</FormErrorMessage>
+                  <FormErrorMessage fontSize={'12px'}>
+                    {errors.password}
+                  </FormErrorMessage>
                 </FormControl>
               </Stack>
               <Stack spacing={8}>

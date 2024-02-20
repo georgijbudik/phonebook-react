@@ -22,6 +22,7 @@ import { Field, Formik } from 'formik';
 import toast from 'react-hot-toast';
 import { styles } from 'helpers/notificationStyles';
 import { validatePassword } from 'helpers/validatePassword';
+import { registerSchema } from 'validationSchemas/registrationSchema';
 
 const RegisterForm = () => {
   const initialValues = {
@@ -55,7 +56,11 @@ const RegisterForm = () => {
         p={{ base: 6, lg: 8 }}
       >
         <Stack spacing={20} w={{ md: 350 }}>
-          <Formik initialValues={initialValues} onSubmit={onSubmit}>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+            validationSchema={registerSchema}
+          >
             {({
               values: { name, email, password },
               handleChange,
@@ -65,7 +70,10 @@ const RegisterForm = () => {
             }) => (
               <form onSubmit={handleSubmit}>
                 <Stack spacing={4}>
-                  <FormControl isRequired>
+                  <FormControl
+                    isInvalid={!!errors.name && touched.name}
+                    isRequired
+                  >
                     <FormLabel htmlFor={nameInputId}>Name</FormLabel>
                     <Field
                       as={Input}
@@ -78,8 +86,14 @@ const RegisterForm = () => {
                       onChange={handleChange}
                       id={nameInputId}
                     />
+                    <FormErrorMessage fontSize={'12px'}>
+                      {errors.name}
+                    </FormErrorMessage>
                   </FormControl>
-                  <FormControl isRequired>
+                  <FormControl
+                    isInvalid={!!errors.email && touched.email}
+                    isRequired
+                  >
                     <FormLabel htmlFor={emailInputId}>Email</FormLabel>
                     <Field
                       as={Input}
@@ -90,6 +104,9 @@ const RegisterForm = () => {
                       onChange={handleChange}
                       id={emailInputId}
                     />
+                    <FormErrorMessage fontSize={'12px'}>
+                      {errors.email}
+                    </FormErrorMessage>
                   </FormControl>
                   <FormControl
                     isInvalid={!!errors.password && touched.password}
@@ -119,7 +136,9 @@ const RegisterForm = () => {
                         </Button>
                       </InputRightElement>
                     </InputGroup>
-                    <FormErrorMessage>{errors.password}</FormErrorMessage>
+                    <FormErrorMessage fontSize={'12px'}>
+                      {errors.password}
+                    </FormErrorMessage>
                   </FormControl>
                   <Stack spacing={10} pt={2}>
                     <Button

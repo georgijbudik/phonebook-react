@@ -8,7 +8,7 @@ const Register = () => {
 
   return (
     !isFetching && (
-      <Flex justify={'center'} minH={'80vh'}>
+      <Flex justify={'center'} h={'80vh'}>
         <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
           <Stack align={'center'}>
             <Heading fontSize={{ base: '3xl', lg: '4xl' }} textAlign={'center'}>
